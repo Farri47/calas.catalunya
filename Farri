@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Las Mejores Calas de Catalunya</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background: #f0f8ff;
+  }
+  header {
+    background: #0077be;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .cala {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ccc;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  .stars {
+    color: #ffb400;
+    font-size: 1.2rem;
+  }
+  .info {
+    margin-top: 0.5rem;
+  }
+  .label {
+    font-weight: bold;
+  }
+  .popularity {
+    color: #2a7f62;
+  }
+  .jump {
+    color: #d9534f;
+  }
+  footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Las Mejores Calas de Catalunya</h1>
+  <p>Selección de calas poco conocidas, con encanto y naturaleza</p>
+</header>
+<main id="cala-list">
+
+</main>
+<footer>
+  &copy; 2025 - Guía de Calas Catalanas
+</footer>
+
+<script>
+// Datos de calas con info relevante
+const calas = [
+  {
+    nombre: "Cala Tavallera",
+    valoracion: 4.8,
+    tiempoLlegada: 45, // min desde ubicación simulada
+    popularidad: "Baja",
+    saltosAlAgua: true,
+    entorno: "Rocas y pinos, ambiente muy natural y tranquilo",
+    accesibilidad: "A pie, camino de dificultad media",
+    servicios: "Ninguno cerca",
+    tipoArena: "Rocosa"
+  },
+  {
+    nombre: "Cala Montjoi",
+    valoracion: 4.5,
+    tiempoLlegada: 60,
+    popularidad: "Media",
+    saltosAlAgua: false,
+    entorno: "Acantilados, aguas claras",
+    accesibilidad: "En coche y luego corto paseo",
+    servicios: "Restaurante Michelin (cerrado desde 2016, pero sigue siendo punto de interés)",
+    tipoArena: "Rocosa y grava"
+  },
+  {
+    nombre: "Cala Aiguablava",
+    valoracion: 4.2,
+    tiempoLlegada: 40,
+    popularidad: "Media-Baja",
+    saltosAlAgua: true,
+    entorno: "Arena fina, aguas turquesas",
+    accesibilidad: "En coche, aparcamiento limitado",
+    servicios: "Bar y restaurante",
+    tipoArena: "Arena fina"
+  },
+  {
+    nombre: "Cala S'Alguer (Llafranc)",
+    valoracion: 4.6,
+    tiempoLlegada: 35,
+    popularidad: "Baja",
+    saltosAlAgua: false,
+    entorno: "Pequeña cala de piedras, pueblo pesquero cercano",
+    accesibilidad: "Fácil acceso desde Llafranc",
+    servicios: "Chiringuitos y tiendas en pueblo",
+    tipoArena: "Piedras pequeñas"
+  }
+];
+
+// Función para mostrar estrellas según valoración
+function estrellas(rating) {
+  const fullStars = Math.floor(rating);
+  const halfStar = rating - fullStars >= 0.5;
+  let starsHtml = "";
+  for(let i=0; i<fullStars; i++) starsHtml += "★";
+  if(halfStar) starsHtml += "☆";
+  for(let i=starsHtml.length; i<5; i++) starsHtml += "☆";
+  return starsHtml;
+}
+
+function crearCalaHTML(cala) {
+  return `
+    <article class="cala">
+      <h2>${cala.nombre}</h2>
+      <div class="stars" title="Valoración: ${cala.valoracion}">${estrellas(cala.valoracion)} (${cala.valoracion.toFixed(1)})</div>
+      <p class="info"><span class="label">Tiempo estimado de llegada:</span> ${cala.tiempoLlegada} minutos desde tu ubicación</p>
+      <p class="info"><span class="label">Nivel de popularidad:</span> <span class="popularity">${cala.popularidad}</span></p>
+      <p class="info"><span class="label">Saltos al agua:</span> <span class="jump">${cala.saltosAlAgua ? "Sí" : "No"}</span></p>
+      <p class="info"><span class="label">Entorno:</span> ${cala.entorno}</p>
+      <p class="info"><span class="label">Accesibilidad:</span> ${cala.accesibilidad}</p>
+      <p class="info"><span class="label">Servicios cercanos:</span> ${cala.servicios}</p>
+      <p class="info"><span class="label">Tipo de suelo:</span> ${cala.tipoArena}</p>
+    </article>
+  `;
+}
+
+// Insertamos las calas en el HTML
+const lista = document.getElementById("cala-list");
+calas.forEach(cala => {
+  lista.innerHTML += crearCalaHTML(cala);
+});
+</script>
+
+</body>
+</html>
